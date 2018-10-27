@@ -11,7 +11,13 @@ export default StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 4,
     width: 8,
-    height: 8,
-    margin: 4,
+    height: 8
   },
+  
+  dotContainer: {
+    borderRadius: 4,
+    width: 8,
+    height: 8,
+    margin: 10
+  }
 });
