@@ -8,16 +8,20 @@ export default StyleSheet.create({
   },
 
   dot: {
-    backgroundColor: 'white',
-    borderRadius: 4,
-    width: 8,
-    height: 8
+    position: 'absolute',
+    top: -1,
+    bottom: -1,
+    left: -1,
+    right: -1,
+    backgroundColor: 'white'
   },
   
   dotContainer: {
+    position: 'relative',
+    overflow: 'hidden',
     borderRadius: 4,
     width: 8,
     height: 8,
-    margin: 10
+    margin: 5
   }
 });
