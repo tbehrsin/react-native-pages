@@ -11,6 +11,9 @@ export default class Indicator extends PureComponent {
     pages: PropTypes.number.isRequired,
     progress: PropTypes.instanceOf(Animated.Value).isRequired,
     indicatorColor: PropTypes.string.isRequired,
+    indicatorBorderColor: PropTypes.string.isRequired,
+    indicatorBorderWidth: PropTypes.number.isRequired,
+    
     indicatorOpacity: PropTypes.number.isRequired,
     indicatorPosition: PropTypes.oneOf([
       'top',
@@ -25,6 +28,8 @@ export default class Indicator extends PureComponent {
       pages,
       progress,
       indicatorColor: backgroundColor,
+      indicatorBorderColor: borderColor,
+      indicatorBorderWidth: borderWidth,
       indicatorOpacity,
       indicatorPosition,
       style,
@@ -53,7 +58,9 @@ export default class Indicator extends PureComponent {
       let style = { opacity, backgroundColor };
 
       return (
-        <Animated.View style={[styles.dot, style]} key={index} />
+        <View style={[styles.dotContainer, {borderColor, borderWidth}]}>
+          <Animated.View style={[styles.dot, style]} key={index} />
+        </View>
       );
     });
 
