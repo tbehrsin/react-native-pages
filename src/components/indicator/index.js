@@ -58,8 +58,8 @@ export default class Indicator extends PureComponent {
       let style = { opacity, backgroundColor };
 
       return (
-        <View style={[styles.dotContainer, {borderColor, borderWidth}]}>
-          <Animated.View style={[styles.dot, style]} key={index} />
+        <View style={[styles.dotContainer, {borderColor, borderWidth}]} key={index}>
+          <Animated.View style={[styles.dot, style]} />
         </View>
       );
     });
