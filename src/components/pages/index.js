@@ -146,6 +146,10 @@ export default class Pages extends PureComponent {
   }
 
   onScrollBeginDrag() {
+    if (this.scrollState === -1) {
+      this.startProgress = this.progress;
+    }
+    
     this.scrollState = 0;
   }
 
@@ -153,8 +157,20 @@ export default class Pages extends PureComponent {
     let { horizontal } = this.props;
 
     /* Vertical pagination is not working on android, scroll by hands */
-    if ('android' === Platform.OS && !horizontal) {
-      this.scrollToPage(Math.round(this.progress));
+    if ('android' === Platform.OS) {
+      if (this.startProgress < this.progress) {
+        if (Math.abs(this.startProgress - this.progress) < 0.25) {
+          this.scrollToPage(Math.floor(this.progress));
+        } else {
+          this.scrollToPage(Math.ceil(this.progress));
+        }
+      } else {
+        if (Math.abs(this.startProgress - this.progress) < 0.25) {
+          this.scrollToPage(Math.ceil(this.progress));
+        } else {
+          this.scrollToPage(Math.floor(this.progress));
+        }
+      }
     }
 
     this.scrollState = 1;
@@ -258,9 +274,8 @@ export default class Pages extends PureComponent {
         {...props}
         style={[styles.container, style, scrollStyle]}
         onScroll={this.onScroll}
-        onTouchStart={this.onScrollBeginDrag}
-        onScrollBeginDrag={this.onScrollBeginDrag}
-        onScrollEndDrag={this.onScrollEndDrag}
+        onMomentumScrollBegin={this.onScrollBeginDrag}
+        onMomentumScrollEnd={this.onScrollEndDrag}
         contentOffset={contentOffset}
         ref={this.updateRef}
       >
