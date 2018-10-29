@@ -258,6 +258,7 @@ export default class Pages extends PureComponent {
         {...props}
         style={[styles.container, style, scrollStyle]}
         onScroll={this.onScroll}
+        onTouchStart={this.onScrollBeginDrag}
         onScrollBeginDrag={this.onScrollBeginDrag}
         onScrollEndDrag={this.onScrollEndDrag}
         contentOffset={contentOffset}
